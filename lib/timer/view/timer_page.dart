@@ -27,13 +27,15 @@ class Actions extends StatelessWidget {
               FloatingActionButton(
                 backgroundColor: Colors.indigo,
                 foregroundColor: Colors.lightGreenAccent,
-                onPressed: () => context.read<TimerBloc>().add(const TimerPaused()),
+                onPressed: () =>
+                    context.read<TimerBloc>().add(const TimerPaused()),
                 child: const Icon(Icons.pause),
               ),
               FloatingActionButton(
                 backgroundColor: Colors.indigo,
                 foregroundColor: Colors.lightGreenAccent,
-                onPressed: () => context.read<TimerBloc>().add(const TimerReset()),
+                onPressed: () =>
+                    context.read<TimerBloc>().add(const TimerReset()),
                 child: const Icon(Icons.replay),
               ),
             ],
@@ -41,13 +43,15 @@ class Actions extends StatelessWidget {
               FloatingActionButton(
                 backgroundColor: Colors.indigo,
                 foregroundColor: Colors.lightGreenAccent,
-                onPressed: () => context.read<TimerBloc>().add(const TimerResumed()),
+                onPressed: () =>
+                    context.read<TimerBloc>().add(const TimerResumed()),
                 child: const Icon(Icons.play_arrow),
               ),
               FloatingActionButton(
                 backgroundColor: Colors.indigo,
                 foregroundColor: Colors.lightGreenAccent,
-                onPressed: () => context.read<TimerBloc>().add(const TimerReset()),
+                onPressed: () =>
+                    context.read<TimerBloc>().add(const TimerReset()),
                 child: const Icon(Icons.replay),
               ),
             ],
@@ -55,7 +59,8 @@ class Actions extends StatelessWidget {
               FloatingActionButton(
                 backgroundColor: Colors.indigo,
                 foregroundColor: Colors.lightGreenAccent,
-                onPressed: () => context.read<TimerBloc>().add(const TimerReset()),
+                onPressed: () =>
+                    context.read<TimerBloc>().add(const TimerReset()),
                 child: const Icon(Icons.replay),
               ),
             ]
@@ -108,7 +113,6 @@ class TimerView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: const <Widget>[
-
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 100.0),
                 child: Center(child: TimerText()),
@@ -128,15 +132,33 @@ class TimerText extends StatelessWidget {
   Widget build(BuildContext context) {
     final duration = context.select((TimerBloc bloc) => bloc.state.duration);
     final minutesStr =
-    ((duration / 60) % 60).floor().toString().padLeft(2, '0');
+        ((duration / 60) % 60).floor().toString().padLeft(2, '0');
     final secondsStr = (duration % 60).floor().toString().padLeft(2, '0');
-    return Text(
-      '$minutesStr:$secondsStr',
-      style: const TextStyle(
-        color: Colors.lightGreenAccent,
-        fontSize: 100,
-        fontFamily: 'Monospace'
-      ),
-    );
+    return (
+        Center(
+        child: Column(
+      children: [
+        const Text.rich(
+          TextSpan(
+            text: 'Pomodoro',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 25,
+              fontFamily: 'Monospace',
+            ),
+          ),
+        ),
+        Text.rich(
+          TextSpan(text: '$minutesStr:$secondsStr'),
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: Colors.lightGreenAccent,
+            fontSize: 100,
+            fontFamily: 'Monospace',
+          ),
+        )
+      ],
+    )));
   }
 }

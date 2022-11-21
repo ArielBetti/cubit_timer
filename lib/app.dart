@@ -7,7 +7,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Timer',
+      title: 'Flutter Pomodoro',
       theme: ThemeData(
         primaryColor: const Color.fromRGBO(109, 234, 255, 1),
         colorScheme: const ColorScheme.light(
